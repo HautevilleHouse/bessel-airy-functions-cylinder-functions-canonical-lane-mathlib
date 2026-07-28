@@ -1,0 +1,24 @@
+import canonicalLaneMathlib.AdmissibleClass
+import HautevilleHouse.BesselAiryFunctionsCylinderFunctionsCanonicalLaneLean.BesselFunctions
+import HautevilleHouse.BesselAiryFunctionsCylinderFunctionsCanonicalLaneLean.AiryFunctions
+import HautevilleHouse.BesselAiryFunctionsCylinderFunctionsCanonicalLaneLean.CylinderFunctions
+
+namespace HautevilleHouse
+namespace BesselAiryFunctionsCylinderFunctionsCanonicalLaneLean
+
+structure SpecialFunctionRelationsPackage where
+  besselToAiryConnection : Prop
+  besselToCylinderConnection : Prop
+  recurrenceCompatibility : Prop
+  besselToAiryConnectionClosed : besselToAiryConnection
+  besselToCylinderConnectionClosed : besselToCylinderConnection
+  recurrenceCompatibilityClosed : recurrenceCompatibility
+
+def SpecialFunctionRelationsClosed (R : SpecialFunctionRelationsPackage) : Prop :=
+  R.besselToAiryConnection ∧ R.besselToCylinderConnection ∧ R.recurrenceCompatibility
+
+theorem special_function_relations_closed_from_evidence (R : SpecialFunctionRelationsPackage) : SpecialFunctionRelationsClosed R := by
+  exact And.intro R.besselToAiryConnectionClosed (And.intro R.besselToCylinderConnectionClosed R.recurrenceCompatibilityClosed)
+
+end BesselAiryFunctionsCylinderFunctionsCanonicalLaneLean
+end HautevilleHouse
